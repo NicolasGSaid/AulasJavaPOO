@@ -1,3 +1,5 @@
+//Calculadora de salário
+
 package exemplos;
 
 public class Exercício1 {

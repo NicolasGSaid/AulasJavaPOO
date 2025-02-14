@@ -1,3 +1,5 @@
+//Sistema de cadastro de funcionário e calculo de INSS e IRRF
+
 package exemplos;
 
 import java.util.Scanner;
@@ -32,7 +34,7 @@ class Funcionario {
     public double calcularINSS() {
           
         if (salarioBase < 1412.00) 
-            {inss = salarioBase * 0.075; } // 7,5% de INSS
+            {inss = salarioBase * 0.0; } // sem descontos de INSS
         
          else if (salarioBase >= 1412.01 && salarioBase <= 2666.68) 
             {inss = salarioBase * 0.09;} // 9% de INSS
