@@ -9,6 +9,7 @@ public class Exercício7 {
     public static void main (String[] args){
         
         Scanner input = new Scanner(System.in);
+        
         System.out.printf("Digite um número para receber sua taboada: ");
         int numero = input.nextInt();
         int multiplicador = 0;
