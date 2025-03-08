@@ -47,6 +47,6 @@ class Aluno {
     public void exibirInformacoes() {
     
     System.out.println("Nome: " + nome + " Idade: " + idade);
- 
+        
     }
 }

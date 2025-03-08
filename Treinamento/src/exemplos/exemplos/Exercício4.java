@@ -74,54 +74,51 @@ class Funcionario {
 
 public class Exercício4 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        try (Scanner input = new Scanner(System.in)) {
+            // Tipo String
+            System.out.printf("Digite seu nome:");
+            String nome = input.next();
+            System.out.printf("Digite o nome da sua mãe: ");
+            String nomeMae = input.next();
+            System.out.printf("Digite o nome do seu pai: ");
+            String nomePai = input.next();
+            input.nextLine(); // Consome o espaço de linha
+            System.out.printf("Informe o número do seu telefone: ");
+            String telefone = input.nextLine();
 
-        // Entrada dos dados pelo usuário
+            // Tipo int
+            System.out.printf("Digite o seu ID: ");
+            int id = input.nextInt();
+            System.out.printf("Informe a quantidade de seus dependentes: ");
+            int quantDependentes = input.nextInt();
 
-        // Tipo String
-        System.out.printf("Digite seu nome:");
-        String nome = input.next();
-        System.out.printf("Digite o nome da sua mãe: ");
-        String nomeMae = input.next();
-        System.out.printf("Digite o nome do seu pai: ");
-        String nomePai = input.next();
-        input.nextLine(); // Consome o espaço de linha
-        System.out.printf("Informe o número do seu telefone: ");
-        String telefone = input.nextLine();
+            // Tipo Double
+            System.out.printf("Informe seu salário base: ");
+            double salarioBase = input.nextDouble();
 
-        // Tipo int
-        System.out.printf("Digite o seu ID: ");
-        int id = input.nextInt();
-        System.out.printf("Informe a quantidade de seus dependentes: ");
-        int quantDependentes = input.nextInt();
+            // Cria um objeto para o funcionário
+            Funcionario funcionario1 = new Funcionario(nome, nomePai, nomeMae, telefone, quantDependentes, salarioBase, 0.0, id, 0.0, 0.0, 0.0, 300.50);
+            System.out.println();      
 
-        // Tipo Double
-        System.out.printf("Informe seu salário base: ");
-        double salarioBase = input.nextDouble();
+            // Chama o método calcularINSS e imprime o resultado
+            double inss = funcionario1.calcularINSS();
+            System.out.printf("O valor do INSS a ser descontado é: %.2f\n", inss);
 
-        // Cria um objeto para o funcionário
-        Funcionario funcionario1 = new Funcionario(nome, nomePai, nomeMae, telefone, quantDependentes, salarioBase, 0.0, id, 0.0, 0.0, 0.0, 300.50);
-        System.out.println();      
+            // Chama o método calcularIRRF e imprime o resultado
+            double irrf = funcionario1.calcularIRRF();
+            System.out.printf("O valor do IRRF a ser declarado é: %.2f\n", irrf);
 
-        // Chama o método calcularINSS e imprime o resultado
-        double inss = funcionario1.calcularINSS();
-        System.out.printf("O valor do INSS a ser descontado é: %.2f\n", inss);
+            // Chama o método Calcular Familia e imprime o resultado
+            double valorFamilia = funcionario1.calcularFamilia();
+            System.out.printf("O valor a ser adicionado pelo Salário família é: %.2f\n", valorFamilia);
 
-        // Chama o método calcularIRRF e imprime o resultado
-        double irrf = funcionario1.calcularIRRF();
-        System.out.printf("O valor do IRRF a ser declarado é: %.2f\n", irrf);
+            // Agora imprime o salário bruto corretamente
+            System.out.printf("Funcionário ID: " + id +"\nNome: " + nome +"\nSeu salario base é: "+ salarioBase + 
+            "\nSeu salário bruto é: R$ %.2f\n", salarioBase + valorFamilia);
 
-        // Chama o método Calcular Familia e imprime o resultado
-        double valorFamilia = funcionario1.calcularFamilia();
-        System.out.printf("O valor a ser adicionado pelo Salário família é: %.2f\n", valorFamilia);
-
-        // Agora imprime o salário bruto corretamente
-        System.out.printf("Funcionário ID: " + id +"\nNome: " + nome +"\nSeu salario base é: "+ salarioBase + 
-        "\nSeu salário bruto é: R$ %.2f\n", salarioBase + valorFamilia);
-
-        // Calculando o salário líquido
-        double salarioLiquido = salarioBase + valorFamilia - inss;
-        System.out.printf("Deduzindo os descontos, fica: R$ %.2f\n", salarioLiquido);
-    
+            // Calculando o salário líquido
+            double salarioLiquido = salarioBase + valorFamilia - inss;
+            System.out.printf("Deduzindo os descontos, fica: R$ %.2f\n", salarioLiquido);
+        }
     }
 }
